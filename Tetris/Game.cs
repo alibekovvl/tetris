@@ -10,6 +10,7 @@ using System.Windows.Controls;
 using System.Windows.Media;
 using System.Windows.Shapes;
 using System.Windows.Threading;
+using System.Windows.Media;
 
 namespace Tetris
 {
@@ -25,9 +26,9 @@ namespace Tetris
         private Random random;
         private int score = 0;
         public bool IsPaused { get; private set; }
+        private SolidColorBrush[,] colorField = new SolidColorBrush[13, 10];
 
         private List<Figures> FiguresList;
-
         public Game(Canvas canvas)
         {
             _canvas = canvas;
@@ -50,8 +51,6 @@ namespace Tetris
             dropTimer.Start();
 
         }
-
-
         private void DropFigure(object sender, EventArgs e)
         {
             if (CanMove(currentX, currentY + 1, currentFigure.Shape))
@@ -74,7 +73,7 @@ namespace Tetris
             currentX = 4;
             currentY = 0;
 
-            MessageBox.Show($"New figure: {currentFigure.GetType().Name}");
+            //MessageBox.Show($"New figure: {currentFigure.GetType().Name}");
 
             if (!CanMove(currentX, currentY, currentFigure.Shape))
             {
@@ -102,6 +101,7 @@ namespace Tetris
                         if (y >= 0 && y < gameField.GetLength(0) && x >= 0 && x < gameField.GetLength(1))
                         {
                             gameField[y, x] = 1;
+                            colorField[y,x] = currentFigure.Color;
                         }
                     }
                 }
@@ -168,6 +168,8 @@ namespace Tetris
             DrawGameField();
 
             int[,] shape = currentFigure.Shape;
+            SolidColorBrush brush = currentFigure.Color;
+
             for (int i = 0; i < shape.GetLength(0); i++)
             {
                 for (int j = 0; j < shape.GetLength(1); j++)
@@ -178,7 +180,7 @@ namespace Tetris
                         {
                             Width = CellSize,
                             Height = CellSize,
-                            Fill = Brushes.Red,
+                            Fill = brush,
                             Stroke = Brushes.Black
                         };
 
@@ -190,6 +192,7 @@ namespace Tetris
             }
         }
 
+       
         public void ResumeGame()
         {
             IsPaused = false;
@@ -265,6 +268,7 @@ namespace Tetris
 
         public void DrawGameField()
         {
+
             for (int i = 0; i < gameField.GetLength(0); i++)
             {
                 for (int j = 0; j < gameField.GetLength(1); j++)
@@ -273,7 +277,7 @@ namespace Tetris
                     {
                         Width = CellSize,
                         Height = CellSize,
-                        Fill = gameField[i, j] == 1 ? Brushes.Red : Brushes.Transparent,
+                        Fill = gameField[i, j] == 1 ? colorField[i,j] : Brushes.Transparent,
                         Stroke = Brushes.Black
                     };
 

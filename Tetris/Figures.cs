@@ -1,10 +1,12 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Configuration;
+using System.Drawing;
 using System.Linq;
 using System.Net.Http.Headers;
 using System.Text;
 using System.Threading.Tasks;
+using System.Windows.Media;
 
 namespace Tetris
 {
@@ -14,6 +16,27 @@ namespace Tetris
     {
         public virtual int[,] Shape { get; }
 
+        public SolidColorBrush Color { get; set; }
+        public Figures()
+        {
+            Color = GetBrushesColor();
+        }
+        public System.Windows.Media.Color[] colors = new System.Windows.Media.Color[]
+        {
+            System.Windows.Media.Colors.Red,
+            System.Windows.Media.Colors.Blue,
+            System.Windows.Media.Colors.Green,
+            System.Windows.Media.Colors.Yellow,
+            System.Windows.Media.Colors.Purple,
+            System.Windows.Media.Colors.Orange
+        };
+        public SolidColorBrush GetBrushesColor()
+        {
+            Random random = new Random();
+            int index = random.Next(colors.Length);
+            return new SolidColorBrush(colors[index]);
+
+        }
         public virtual void Rotate()
         {
 

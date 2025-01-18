@@ -9,7 +9,7 @@
     <Grid>
         <Canvas Name ="ИгровоеПоле" Background="White" Width="300" Height="465" Margin="0,0,300,-1" />
         <TextBlock Name="ScoreLabel" FontSize="24" Foreground="Black" Canvas.Left="320" Canvas.Top="10" />
-        <Button Content="Pause" Width="100" Canvas.Left="320" Canvas.Top="50" Click="PauseButton_Click" Margin="414,114,86,277"/>
+        <Button Content="Pause/Start" Width="100" Canvas.Left="320" Canvas.Top="50" Click="PauseButton_Click" Margin="414,114,86,277"/>
         <Button Content="Restart" Width="100" Click="RestartButton_Click" Margin="414,196,86,195"/>
     </Grid>
 
