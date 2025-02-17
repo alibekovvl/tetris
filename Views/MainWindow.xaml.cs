@@ -2,36 +2,38 @@
 using System.Windows;
 using Tetris.ViewModels;
 
-public partial class MainWindow : Window
+namespace Tetris.Views
 {
-    public MainWindow()
+    public partial class MainWindow : Window
     {
-        InitializeComponent();
-
-        var canvas = GameField;
-        DataContext = new MainViewModel(canvas);
-    }
-
-    protected override void OnKeyDown(KeyEventArgs e)
-    {
-        var viewModel = (MainViewModel)DataContext;
-
-        switch (e.Key)
+        public MainWindow()
         {
-            case Key.Left:
-                viewModel.MoveLeftCommand.Execute(null);
-                break;
-            case Key.Right:
-                viewModel.MoveRightCommand.Execute(null);
-                break;
-            case Key.Down:
-                viewModel.MoveDownCommand.Execute(null);
-                break;
-            case Key.Up:
-                viewModel.RotateCommand.Execute(null);
-                break;
-        }
+            InitializeComponent();
 
-        base.OnKeyDown(e);
+            var canvas = ИгровоеПоле;
+            DataContext = new MainViewModel(canvas);
+        }
+        protected override void OnKeyDown(KeyEventArgs e)
+        {
+            var viewModel = (MainViewModel)DataContext;
+
+            switch (e.Key)
+            {
+                case Key.Left:
+                    viewModel.MoveLeftCommand.Execute(null);
+                    break;
+                case Key.Right:
+                    viewModel.MoveRightCommand.Execute(null);
+                    break;
+                case Key.Down:
+                    viewModel.MoveDownCommand.Execute(null);
+                    break;
+                case Key.Up:
+                    viewModel.RotateCommand.Execute(null);
+                    break;
+            }
+
+            base.OnKeyDown(e);
+        }
     }
 }

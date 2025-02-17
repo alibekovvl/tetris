@@ -11,6 +11,9 @@
 
   <ItemGroup>
     <!-- Views -->
+    <Page Include="App.xaml">
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
     <Page Include="Views\MainWindow.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
@@ -29,13 +32,4 @@
     <Compile Include="Models\Game.cs" />
     <Compile Include="Models\Figures.cs" />
   </ItemGroup>
-
-<ItemGroup>
-  <!-- Application -->
-  <ApplicationDefinition Include="App.xaml">
-    <Generator>MSBuild:Compile</Generator>
-    <SubType>Designer</SubType>
-  </ApplicationDefinition>
- 
-</ItemGroup>
 </Project>
