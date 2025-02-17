@@ -1,0 +1,37 @@
+﻿<Project Sdk="Microsoft.NET.Sdk">
+  <PropertyGroup>
+    <OutputType>WinExe</OutputType>
+    <TargetFramework>net8.0-windows</TargetFramework>
+    <Nullable>enable</Nullable>
+    <ImplicitUsings>enable</ImplicitUsings>
+    <UseWPF>true</UseWPF>
+    <!-- Добавляем автоматическое включение файлов -->
+    <EnableDefaultPageItems>false</EnableDefaultPageItems>
+    <EnableDefaultItems>false</EnableDefaultItems>
+  </PropertyGroup>
+
+  <!-- Явно указываем структуру проекта -->
+  <ItemGroup>
+    <!-- Views -->
+  <Page Include="Views\MainWindow.xaml">
+    <SubType>Designer</SubType>
+    <Generator>MSBuild:Compile</Generator>
+  </Page>
+  
+  <Compile Include="Views\MainWindow.xaml.cs">
+    <DependentUpon>Views\MainWindow.xaml</DependentUpon> <!-- Добавлено явное указание пути -->
+  </Compile>
+
+    <!-- ViewModels -->
+    <Compile Include="ViewModels\MainViewModel.cs" />
+    <Compile Include="ViewModels\RelayCommand.cs" />
+
+    <!-- Models -->
+    <Compile Include="Models\Game.cs" />
+    <Compile Include="Models\Figures.cs" />
+
+    <!-- Удаляем ненужную папку Commands -->
+    <!-- <Folder Include="Commands\" /> -->
+  </ItemGroup>
+
+</Project>
